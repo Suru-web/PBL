@@ -31,7 +31,6 @@ struct hirerInfo
 
 int main()
 {
-    printf("Hehe");
     printf("Hi there, Welcome to Our Program.\nWe can provide a platform for both hiree and hirer with the help of our program\n");
     printf("Please select What you want to do in our program :\n");
     printf("1 - If you are a Hirer \t 2 - If you are Hiree\n");
