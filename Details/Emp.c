@@ -142,7 +142,7 @@ int hireeRegister()
         printf("\nName : %s, Age : %d, Gender : %s, ID : %d", hi[i].name, hi[i].age, hi[i].gender, hi[i].uid);
     }
     FILE *hireedetails;
-    hireedetails = fopen("C:\\Coding\\PROJECTS\\PBL\\Details\\Hiree Details\\hiree.txt", "a");
+    hireedetails = fopen("C:\\Coding\\PROJECTS\\PBL\\Details\\hiree.txt", "a");
     for (int i = 0; i < count; i++)
     {
         fprintf(hireedetails, "%s %d %s %d\n", hi[i].name, hi[i].age, hi[i].gender, hi[i].uid);
