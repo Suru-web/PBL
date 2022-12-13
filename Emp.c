@@ -189,6 +189,7 @@ int hirerLogin()
         fseek(hirerDetails, sizeof(struct hirerInfo), SEEK_SET);
         fread(&hr,sizeof(struct hirerInfo),1, hirerDetails);
         printf("%s",hr->name);
+        
     }
     
     fclose(hirerDetails);
