@@ -2,3 +2,5 @@ Suraj,19,M,10060
 Ranj,19,F,11105
 pri,19,F,10017
 Suraj,119,M,10503
+Suraj 2 M 10774
+Ranjitha 19 F 10800
