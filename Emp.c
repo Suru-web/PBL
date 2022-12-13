@@ -117,6 +117,7 @@ int wplace()
 
 int hireeRegister()
 {
+    printf("Hello");
     int count, id;
     printf("\nEnter the number of applications you want to fill : \t");
     scanf("%d", &count);
