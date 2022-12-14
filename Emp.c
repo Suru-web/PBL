@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include<string.h>
+#include <string.h>
 #define MAX 100
 int askHiree();
 int wplace();
@@ -84,16 +84,16 @@ int askHirer()
 {
     int op;
     printf("\nSelect an option : 1) Register 2) Login\n");
-    scanf("%d",&op);
+    scanf("%d", &op);
     switch (op)
     {
     case 1:
         hirerRegister();
         break;
-    
+
     case 2:
         hirerLogin();
-        //printf("\nWe are working on login part\n");
+        // printf("\nWe are working on login part\n");
         break;
     default:
         printf("\nInvalid Choice");
@@ -157,18 +157,17 @@ int hirerRegister()
     // Storing data in structure
     printf("Enter the details :\n");
     printf("Name :\t");
-    scanf("%s",&hr.name);
+    scanf("%s", &hr.name);
     printf("Age :\t");
-    scanf("%d",&hr.age);
+    scanf("%d", &hr.age);
     printf("Email :\t");
-    scanf("%s",&hr.email);
+    scanf("%s", &hr.email);
     printf("Password :\t");
-    scanf("%s",&hr.password);
+    scanf("%s", &hr.password);
     FILE *hirerDetails;
-    hirerDetails = fopen("C:\\Coding\\PROJECTS\\PBL\\Details\\hirer.txt","a");
-    fprintf(hirerDetails, "%s %d %s %s\n",hr.name,hr.age,hr.email,hr.password);
+    hirerDetails = fopen("C:\\Coding\\PROJECTS\\PBL\\Details\\hirer.txt", "a");
+    fprintf(hirerDetails, "%s %d %s %s\n", hr.name, hr.age, hr.email, hr.password);
     fclose(hirerDetails);
-
 }
 int hirerLogin()
 {
@@ -178,24 +177,21 @@ int hirerLogin()
         char name[20];
         char gender[1];
         char email[30];
-        char password[20];   
-    }t1;
-    
+        char password[20];
+    } t1;
+
     struct hirerInfo hr[MAX];
     FILE *hirerDetails;
-    hirerDetails = fopen("C:\\Coding\\PROJECTS\\PBL\\Details\\hirer.txt","r");
+    hirerDetails = fopen("C:\\Coding\\PROJECTS\\PBL\\Details\\hirer.txt", "r");
     while (!feof(hirerDetails))
     {
         fseek(hirerDetails, sizeof(struct hirerInfo), SEEK_SET);
-        fread(&hr,sizeof(struct hirerInfo),1, hirerDetails);
-        printf("%s",hr->name);
-        
+        fread(&hr, sizeof(struct hirerInfo), 1, hirerDetails);
+        printf("%s", hr->name);
     }
-    
-    fclose(hirerDetails);
-       
-}
 
+    fclose(hirerDetails);
+}
 
 int checkInfoHiree()
 {
@@ -210,6 +206,5 @@ int checkInfoHiree()
     fscanf(details, "%s%d", &getname, &ide);
     printf("Got the value from the file, name = %s\t", getname); // Check this out
 
-    
     fclose(details);
 }
