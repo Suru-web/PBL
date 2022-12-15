@@ -12,6 +12,7 @@ int checkInfoHiree();
 int askHirer();
 int hirerRegister();
 int hirerLogin();
+int skillSet();
 
 struct hireeInfo
 {
@@ -19,6 +20,7 @@ struct hireeInfo
     char name[20];
     char gender[1];
     int uid;
+    ch skill[20];
 };
 struct hirerInfo
 {
@@ -207,4 +209,22 @@ int checkInfoHiree()
     printf("Got the value from the file, name = %s\t", getname); // Check this out
 
     fclose(details);
+}
+
+
+int skillSet()
+{
+    int ch;
+    printf("Please select your skillset or enter your own :\n");
+    printf("1.Driving\t2.Cooking\t3.Cleaning household\t4.Beautician\t5.Construction\t6.Enter your own skills\t");
+    switch (ch)
+    {
+    case 1 :
+        
+        break;
+    
+    default:
+        break;
+    }
+
 }
