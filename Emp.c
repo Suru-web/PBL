@@ -12,7 +12,7 @@ int checkInfoHiree();
 int askHirer();
 int hirerRegister();
 int hirerLogin();
-char skillSet();
+char *skillSet();
 
 struct hireeInfo
 {
@@ -119,36 +119,71 @@ int wplace()
 
 int hireeRegister()
 {
-    int count, id;
+    int count, id,ch;
+    char skill[];
     printf("\nEnter the number of applications you want to fill : \t");
     scanf("%d", &count);
-    struct hireeInfo hi[count];
+    struct hireeInfo hi;
     // Storing data in structures :
-    for (int i = 0; i < count; i++)
+    printf("\nEnter the details of applicant\n");
+    printf("\nEnter Your name : \t");
+    scanf("%s", &hi.name);
+    printf("\nEnter Your age :\t");
+    scanf("%d", &hi.age);
+    printf("\nEnter Your gender (M/F/O):\t");
+    scanf("%s", &hi.gender);
+    id = idGenerator();
+    hi.uid = id;
+    // strcpy(hi.skill, skillSet());
+    // printf("%s",hi.skill);
+
+    printf("Select your skill :\t");
+    printf("1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\t6.Enter your own skill set\n");
+    scanf("%d", &ch);
+    switch (ch)
     {
-        printf("\nEnter the details of applicant %d\n", i + 1);
-        printf("\nEnter Your name : \t");
-        scanf("%s", &hi[i].name);
-        printf("\nEnter Your age :\t");
-        scanf("%d", &hi[i].age);
-        printf("\nEnter Your gender (M/F/O):\t");
-        scanf("%s", &hi[i].gender);
-        id = idGenerator();
-        hi[i].uid = id;
-        // hi[i].skill = skillSet();
-        // strcpy(skillSet(),hi[i].skill);
+    case 1:
+        skill[] = "Driving";
+
+        break;
+
+    case 2:
+        skill[] = "Cooking";
+
+        break;
+
+    case 3:
+        skill[] = "Construction";
+
+        break;
+
+    case 4:
+        skill[]= "Cleaning";
+
+        break;
+
+    case 5:
+        skill[] = "Beautician";
+
+        break;
+
+    default:
+        printf("Invalid choice");
+        break;
     }
+    printf("%s",skill);
+
     // Displaying the details
     for (int i = 0; i < count; i++)
     {
-        printf("\nName : %s, Age : %d, Gender : %s, ID : %d\n", hi[i].name, hi[i].age, hi[i].gender, hi[i].uid);
+        printf("\nName : %s, Age : %d, Gender : %s, ID : %d\n", hi.name, hi.age, hi.gender, hi.uid);
     }
     FILE *hireedetails;
     hireedetails = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "a");
     for (int i = 0; i < count; i++)
     {
 
-        fprintf(hireedetails, "%s %d %s %d %s\n", hi[i].name, hi[i].age, hi[i].gender, hi[i].uid,hi[i].skill);
+        fprintf(hireedetails, "%s %d %s %d %s\n", hi.name, hi.age, hi.gender, hi.uid, hi.skill);
     }
 
     fclose(hireedetails);
@@ -210,53 +245,4 @@ int checkInfoHiree()
     printf("Got the value from the file, name = %s\t", getname); // Check this out
 
     fclose(details);
-}
-
-char skillSet()
-{
-    int ch;
-    char skill[20];
-    printf("Select your skill :\t");
-    printf("1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\t6.Enter your own skill set\n");
-    switch (ch)
-    {
-    case 1:
-        // skill = "Driving";
-        strcpy("Driving",skill);
-        return (skill);
-        break;
-
-    case 2:
-        //skill = "Cooking";
-        strcpy("Cooking",skill);
-        return (skill);
-        break;
-
-    case 3:
-        //skill = "Construction";
-        strcpy("Construction",skill);
-        return (skill);
-        break;
-
-    case 4:
-        //skill = "Cleaning";
-        strcpy("Cleaning",skill);
-        return (skill);
-        break;
-
-    case 5:
-        //skill = "Beautician";
-        strcpy("beautician",skill);
-        return (skill);
-        break;
-
-    // case 6:
-    //     scanf("%s", &skill);
-    //     return (skill);
-    //     break;
-
-    default:
-        printf("Invalid choice");
-        break;
-    }
 }
