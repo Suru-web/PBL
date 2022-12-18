@@ -120,10 +120,8 @@ int wplace()
 
 int hireeRegister()
 {
-    int count, id, ch;
+    int id, ch;
     char skill[20];
-    printf("\nEnter the number of applications you want to fill : \t");
-    scanf("%d", &count);
     struct hireeInfo hi;
     // Storing data in structures :
     printf("\nEnter the details of applicant\n");
@@ -135,16 +133,13 @@ int hireeRegister()
     scanf("%s", &hi.gender);
     id = idGenerator();
     hi.uid = id;
-    // strcpy(hi.skill, skillSet());
-    // printf("%s",hi.skill);
 
-    printf("Select your skill :\t");
+    printf("\nSelect your skill :\n");
     printf("1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\t6.Enter your own skill set\n");
     scanf("%d", &ch);
     switch (ch)
     {
     case 1:
-        // skill[] = "Driving";
         strcpy(skill, "Driving");
         break;
 
@@ -170,27 +165,20 @@ int hireeRegister()
 
     case 6:
         scanf("%s", &skill);
+        break;
 
     default:
         printf("Invalid choice");
         break;
     }
     strcpy(hi.skill, skill);
-    printf("%s", skill);
 
     // Displaying the details
-    for (int i = 0; i < count; i++)
-    {
-        printf("\nName : %s, Age : %d, Gender : %s, ID : %d, Skill : %s\n", hi.name, hi.age, hi.gender, hi.uid, hi.skill);
-    }
+    printf("\nName : %s, Age : %d, Gender : %s, ID : %d, Skill : %s\n", hi.name, hi.age, hi.gender, hi.uid, hi.skill);
+
     FILE *hireedetails;
     hireedetails = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "a");
-    for (int i = 0; i < count; i++)
-    {
-
-        fprintf(hireedetails, "%s %d %s %d %s\n", hi.name, hi.age, hi.gender, hi.uid, hi.skill);
-    }
-
+    fprintf(hireedetails, "%s %d %s %d %s\n", hi.name, hi.age, hi.gender, hi.uid, hi.skill);
     fclose(hireedetails);
 }
 
