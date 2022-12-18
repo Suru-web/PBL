@@ -95,7 +95,7 @@ int askHirer()
         break;
 
     case 2:
-        //hirerLogin();
+        // hirerLogin();
         printf("\nWe are working on login part\n");
         break;
     default:
@@ -120,7 +120,7 @@ int wplace()
 
 int hireeRegister()
 {
-    int count, id,ch;
+    int count, id, ch;
     char skill[20];
     printf("\nEnter the number of applications you want to fill : \t");
     scanf("%d", &count);
@@ -145,43 +145,43 @@ int hireeRegister()
     {
     case 1:
         // skill[] = "Driving";
-        strcpy(skill,"Driving");
+        strcpy(skill, "Driving");
         break;
 
     case 2:
-        strcpy(skill,"Cooking");
+        strcpy(skill, "Cooking");
 
         break;
 
     case 3:
-        strcpy(skill,"Construction");
+        strcpy(skill, "Construction");
 
         break;
 
     case 4:
-        strcpy(skill,"Cleaning");
+        strcpy(skill, "Cleaning");
 
         break;
 
     case 5:
-        strcpy(skill,"Beautician");
+        strcpy(skill, "Beautician");
 
         break;
-    
+
     case 6:
-        scanf("%s",&skill);
+        scanf("%s", &skill);
 
     default:
         printf("Invalid choice");
         break;
     }
-    strcpy(hi.skill,skill);
-    printf("%s",skill);
+    strcpy(hi.skill, skill);
+    printf("%s", skill);
 
     // Displaying the details
     for (int i = 0; i < count; i++)
     {
-        printf("\nName : %s, Age : %d, Gender : %s, ID : %d, Skill : %s\n", hi.name, hi.age, hi.gender, hi.uid,hi.skill);
+        printf("\nName : %s, Age : %d, Gender : %s, ID : %d, Skill : %s\n", hi.name, hi.age, hi.gender, hi.uid, hi.skill);
     }
     FILE *hireedetails;
     hireedetails = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "a");
