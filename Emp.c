@@ -185,7 +185,6 @@ int hireeRegister()
 int hirerRegister()
 {
     struct hirerInfo hr;
-    // Storing data in structure
     printf("Enter the details :\n");
     printf("Name :\t");
     scanf("%s", &hr.name);
