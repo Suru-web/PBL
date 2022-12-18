@@ -73,7 +73,8 @@ int askHiree()
         break;
 
     case 2:
-        checkInfoHiree();
+        // checkInfoHiree();
+        printf("\nWe are working on login part\n");
         break;
 
     default:
@@ -94,8 +95,8 @@ int askHirer()
         break;
 
     case 2:
-        hirerLogin();
-        // printf("\nWe are working on login part\n");
+        //hirerLogin();
+        printf("\nWe are working on login part\n");
         break;
     default:
         printf("\nInvalid Choice");
@@ -120,7 +121,7 @@ int wplace()
 int hireeRegister()
 {
     int count, id,ch;
-    char skill[];
+    char skill[20];
     printf("\nEnter the number of applications you want to fill : \t");
     scanf("%d", &count);
     struct hireeInfo hi;
@@ -143,40 +144,44 @@ int hireeRegister()
     switch (ch)
     {
     case 1:
-        skill[] = "Driving";
-
+        // skill[] = "Driving";
+        strcpy(skill,"Driving");
         break;
 
     case 2:
-        skill[] = "Cooking";
+        strcpy(skill,"Cooking");
 
         break;
 
     case 3:
-        skill[] = "Construction";
+        strcpy(skill,"Construction");
 
         break;
 
     case 4:
-        skill[]= "Cleaning";
+        strcpy(skill,"Cleaning");
 
         break;
 
     case 5:
-        skill[] = "Beautician";
+        strcpy(skill,"Beautician");
 
         break;
+    
+    case 6:
+        scanf("%s",&skill);
 
     default:
         printf("Invalid choice");
         break;
     }
+    strcpy(hi.skill,skill);
     printf("%s",skill);
 
     // Displaying the details
     for (int i = 0; i < count; i++)
     {
-        printf("\nName : %s, Age : %d, Gender : %s, ID : %d\n", hi.name, hi.age, hi.gender, hi.uid);
+        printf("\nName : %s, Age : %d, Gender : %s, ID : %d, Skill : %s\n", hi.name, hi.age, hi.gender, hi.uid,hi.skill);
     }
     FILE *hireedetails;
     hireedetails = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "a");
@@ -206,43 +211,4 @@ int hirerRegister()
     hirerDetails = fopen("/home/suraj/Coding/PBL/Details/hirer.txt", "a");
     fprintf(hirerDetails, "%s %d %s %s\n", hr.name, hr.age, hr.email, hr.password);
     fclose(hirerDetails);
-}
-int hirerLogin()
-{
-    struct temp
-    {
-        int age;
-        char name[20];
-        char gender[1];
-        char email[30];
-        char password[20];
-    } t1;
-
-    struct hirerInfo hr[MAX];
-    FILE *hirerDetails;
-    hirerDetails = fopen("C:\\Coding\\PROJECTS\\PBL\\Details\\hirer.txt", "r");
-    while (!feof(hirerDetails))
-    {
-        fseek(hirerDetails, sizeof(struct hirerInfo), SEEK_SET);
-        fread(&hr, sizeof(struct hirerInfo), 1, hirerDetails);
-        printf("%s", hr->name);
-    }
-
-    fclose(hirerDetails);
-}
-
-int checkInfoHiree()
-{
-    char name[20], getname[20];
-    int uid, ide;
-    printf("Enter your name :\t");
-    scanf("%s", &name);
-    printf("Enter your Unique ID :\t");
-    scanf("%d", &uid);
-    FILE *details;
-    details = fopen("C:\\Coding\\PROJECTS\\PBL\\Details\\Hiree Details\\hiree.txt", "r");
-    fscanf(details, "%s%d", &getname, &ide);
-    printf("Got the value from the file, name = %s\t", getname); // Check this out
-
-    fclose(details);
 }
