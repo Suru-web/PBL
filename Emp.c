@@ -12,7 +12,6 @@ int checkInfoHiree();
 int askHirer();
 int hirerRegister();
 int hirerLogin();
-char *skillSet();
 
 struct hireeInfo
 {

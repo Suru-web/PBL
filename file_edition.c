@@ -9,15 +9,21 @@ int main()
     FILE *ptr;
     ptr = fopen("/home/suraj/Coding/PBL/Details/demo.txt", "a");
     printf("enter your name and age\n");
-    scanf("%s", &n.name);
+    scanf("%s", n.name);
     scanf("%d", &n.age);
-    fprintf(ptr, "%s %d", n.name, n.age);
+    fprintf(ptr, "%s %d\n", n.name, n.age);
     fclose(ptr);
+
+    struct student1
+    {
+        int age;
+        char name[20];
+    };
     FILE *ptrr;
     ptrr = fopen("/home/suraj/Coding/PBL/Details/demo.txt", "r");
-    struct student inp;
-    // fread(&inp, "%*s", inp.name);
-    fread(&inp, sizeof(struct student), 1, ptrr);
-    printf("%s\t%d\n", inp.name, inp.age);
+    struct student n1;
+    char name1;
+    fread(&n1, sizeof(struct student1), 1, ptrr);
+    printf("%s\n", n1.name);
     fclose(ptrr);
 }
