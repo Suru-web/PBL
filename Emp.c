@@ -197,4 +197,7 @@ int hirerRegister()
     hirerDetails = fopen("/home/suraj/Coding/PBL/Details/hirer.txt", "a");
     fprintf(hirerDetails, "%s %d %s %s\n", hr.name, hr.age, hr.email, hr.password);
     fclose(hirerDetails);
+
+    printf("Select the category you wish to hire from :\n");
+    printf("1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\n");
 }
