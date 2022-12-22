@@ -16,7 +16,8 @@ int main()
     FILE *ptrr;
     ptrr = fopen("/home/suraj/Coding/PBL/Details/demo.txt", "r");
     struct student inp;
-
-    printf("%s\n", n.name);
+    // fread(&inp, "%*s", inp.name);
+    fread(&inp, sizeof(struct student), 1, ptrr);
+    printf("%s\t%d\n", inp.name, inp.age);
     fclose(ptrr);
 }
