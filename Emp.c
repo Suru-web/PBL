@@ -32,6 +32,7 @@ struct hirerInfo
 struct hirerLogin
 {
     char name[20];
+    int age;
     char email[30];
     char password[20];
 } hlogin;
@@ -218,9 +219,11 @@ int hirerLogin()
     char hemail[30], hpassword[20];
     FILE *ptr;
     ptr = fopen("/home/suraj/Coding/PBL/Details/hirer.txt", "r");
+    fscanf(ptr, "%s", hlogin.name);
+    fscanf(ptr, "%d", &hlogin.age);
     fscanf(ptr, "%s", hlogin.email);
     fscanf(ptr, "%s", hlogin.password);
-    printf("%s, %s", hlogin.email, hlogin.password);
+    printf("%s, %s\n", hlogin.email, hlogin.password);
     printf("Enter Your Details to login :\n");
     printf("Email :\t");
     scanf("%s", hemail);
