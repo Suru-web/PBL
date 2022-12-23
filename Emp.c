@@ -29,6 +29,12 @@ struct hirerInfo
     char email[30];
     char password[20];
 };
+struct hirerLogin
+{
+    char name[20];
+    char email[30];
+    char password[20];
+} hlogin;
 
 int main()
 {
@@ -94,8 +100,8 @@ int askHirer()
         break;
 
     case 2:
-        // hirerLogin();
-        printf("\nWe are working on login part\n");
+        hirerLogin();
+        // printf("\nWe are working on login part\n");
         break;
     default:
         printf("\nInvalid Choice");
@@ -203,6 +209,27 @@ int hirerRegister()
     fclose(hirerDetails);
     int ch;
     printf("Select the category you wish to hire from :\n");
-    printf("1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\n");
-    scanf("%d", &ch);
+    // printf("1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\n");
+    // scanf("%d", &ch);
+}
+
+int hirerLogin()
+{
+    char hemail[30], hpassword[20];
+    FILE *ptr;
+    ptr = fopen("/home/suraj/Coding/PBL/Details/hirer.txt", "r");
+    fscanf(ptr, "%s", hlogin.email);
+    fscanf(ptr, "%s", hlogin.password);
+    printf("%s, %s", hlogin.email, hlogin.password);
+    printf("Enter Your Details to login :\n");
+    printf("Email :\t");
+    scanf("%s", hemail);
+    printf("Password :\t");
+    scanf("%s", hpassword);
+    if ((strcmp(hlogin.email, hemail) == 0) && (strcmp(hlogin.password, hpassword) == 0))
+    {
+        printf("\nLogin Successfull\n");
+    }
+    else
+        printf("\nWrong Credentials, Try again \n");
 }
