@@ -12,6 +12,7 @@ int checkInfoHiree();
 int askHirer();
 int hirerRegister();
 int hirerLogin();
+int after_Hirer_login(int logResult);
 
 struct hireeInfo
 {
@@ -217,6 +218,7 @@ int hirerRegister()
 int hirerLogin()
 {
     char hemail[30], hpassword[20];
+    int logResult;
     FILE *ptr;
     ptr = fopen("/home/suraj/Coding/PBL/Details/hirer.txt", "r");
     fscanf(ptr, "%s", hlogin.name);
@@ -231,8 +233,18 @@ int hirerLogin()
     scanf("%s", hpassword);
     if ((strcmp(hlogin.email, hemail) == 0) && (strcmp(hlogin.password, hpassword) == 0))
     {
+        logResult = 1;
         printf("\nLogin Successfull\n");
+        after_Hirer_login(logResult);
     }
     else
+    {
+        logResult = 0;
         printf("\nWrong Credentials, Try again \n");
+    }
+}
+
+int after_Hirer_login(int logResult)
+{
+    printf("\n%d\n", logResult);
 }
