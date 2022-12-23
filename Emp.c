@@ -122,7 +122,9 @@ int hireeRegister()
     int id, ch;
     char skill[20];
     struct hireeInfo hi;
+
     // Storing data in structures :
+
     printf("\nEnter the details of applicant\n");
     printf("\nEnter Your name : \t");
     scanf("%s", &hi.name);
@@ -136,6 +138,7 @@ int hireeRegister()
     printf("\nSelect your skill :\n");
     printf("1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\t6.Enter your own skill set\n");
     scanf("%d", &ch);
+
     switch (ch)
     {
     case 1:
@@ -173,6 +176,7 @@ int hireeRegister()
     strcpy(hi.skill, skill);
 
     // Displaying the details
+
     printf("\nName : %s, Age : %d, Gender : %s, ID : %d, Skill : %s\n", hi.name, hi.age, hi.gender, hi.uid, hi.skill);
 
     FILE *hireedetails;
