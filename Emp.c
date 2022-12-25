@@ -260,6 +260,9 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
         printf("Email    :\t%s\n", hemail);
         break;
 
+    case 3:
+        printf("Select the skill on which you want to hire :)\n");
+        printf("1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\t6.Enter your own skill set\n");
     default:
         break;
     }
