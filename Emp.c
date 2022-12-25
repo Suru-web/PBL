@@ -40,9 +40,9 @@ struct hirerLogin
 
 int main()
 {
-    printf("Hi there, Welcome to Our Program.\nWe can provide a platform for both hiree and hirer with the help of our program\n");
+    printf("\t\t\t\t\t\t\t\tHi there, Welcome to Our Program.\n\t\t\t\t\tWe can provide a platform for both hiree and hirer with the help of our program\n\n\n");
     printf("Please select What you want to do in our program :\n");
-    printf("1 - If you are a Hirer \t 2 - If you are Hiree\n");
+    printf("1 - If you are a Hirer\t\t2 - If you are Hiree\n");
     int n;
     scanf("%d", &n);
     switch (n)
