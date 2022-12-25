@@ -12,7 +12,7 @@ int checkInfoHiree();
 int askHirer();
 int hirerRegister();
 int hirerLogin();
-int after_Hirer_login(int logResult);
+void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hemail[], char hpassword[]);
 
 struct hireeInfo
 {
@@ -221,8 +221,10 @@ int hirerLogin()
     int logResult;
     FILE *ptr;
     ptr = fopen("/home/suraj/Coding/PBL/Details/hirer.txt", "r");
-    fscanf(ptr, "%s", hlogin.name);
-    fscanf(ptr, "%d", &hlogin.age);
+    char hirer_name[20];
+    int hirer_age;
+    fscanf(ptr, "%s", hirer_name);
+    fscanf(ptr, "%d", &hirer_age);
     fscanf(ptr, "%s", hlogin.email);
     fscanf(ptr, "%s", hlogin.password);
     printf("%s, %s\n", hlogin.email, hlogin.password);
@@ -235,7 +237,7 @@ int hirerLogin()
     {
         logResult = 1;
         printf("\nLogin Successfull\n");
-        after_Hirer_login(logResult);
+        after_Hirer_login(logResult, hirer_name, hirer_age, hemail, hpassword);
     }
     else
     {
@@ -244,8 +246,8 @@ int hirerLogin()
     }
 }
 
-int after_Hirer_login(int logResult)
+void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hemail[], char hpassword[]);
 {
-    printf("\n%d\n", logResult);
-    printf("Suraj");
+    printf("What do you want to do after loging in :\n");
+    printf("1.Display Account info\t2. Update Account\t3. Hire Applicants")
 }
