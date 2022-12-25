@@ -247,4 +247,5 @@ int hirerLogin()
 int after_Hirer_login(int logResult)
 {
     printf("\n%d\n", logResult);
+    printf("Suraj");
 }
