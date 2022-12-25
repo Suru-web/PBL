@@ -227,7 +227,6 @@ int hirerLogin()
     fscanf(ptr, "%d", &hirer_age);
     fscanf(ptr, "%s", hlogin.email);
     fscanf(ptr, "%s", hlogin.password);
-    printf("%s, %s\n", hlogin.email, hlogin.password);
     printf("Enter Your Details to login :\n");
     printf("Email :\t");
     scanf("%s", hemail);
@@ -236,7 +235,7 @@ int hirerLogin()
     if ((strcmp(hlogin.email, hemail) == 0) && (strcmp(hlogin.password, hpassword) == 0))
     {
         logResult = 1;
-        printf("\nLogin Successfull\n");
+        printf("\nLogin Successfull\n\n");
         after_Hirer_login(logResult, hirer_name, hirer_age, hemail, hpassword);
     }
     else
@@ -246,8 +245,22 @@ int hirerLogin()
     }
 }
 
-void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hemail[], char hpassword[]);
+void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hemail[], char hpassword[])
 {
+    int ch;
     printf("What do you want to do after loging in :\n");
-    printf("1.Display Account info\t2. Update Account\t3. Hire Applicants")
+    printf("1.Display Account info\t2. Update Account\t3. Hire Applicants");
+    scanf("%d", &ch);
+    switch (ch)
+    {
+    case 1:
+        printf("Your Details are :\n");
+        printf("Name     :\t%s\n", hirer_name);
+        printf("Age      :\t%d\n", hirer_age);
+        printf("Email    :\t%s\n", hemail);
+        break;
+
+    default:
+        break;
+    }
 }
