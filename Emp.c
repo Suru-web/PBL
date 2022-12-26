@@ -207,7 +207,7 @@ int hirerRegister()
     scanf("%s", &hr.password);
     FILE *hirerDetails;
     hirerDetails = fopen("/home/suraj/Coding/PBL/Details/hirer.txt", "a");
-    fprintf(hirerDetails, "%s %d %s %s\n", hr.name, hr.age, hr.email, hr.password);
+    fprintf(hirerDetails, "%s %s %s %d\n", hr.email, hr.password, hr.name, hr.age);
     fclose(hirerDetails);
     int ch;
     printf("Select the category you wish to hire from :\n");
@@ -223,10 +223,11 @@ int hirerLogin()
     ptr = fopen("/home/suraj/Coding/PBL/Details/hirer.txt", "r");
     char hirer_name[20];
     int hirer_age;
-    fscanf(ptr, "%s", hirer_name);
-    fscanf(ptr, "%d", &hirer_age);
+
     fscanf(ptr, "%s", hlogin.email);
     fscanf(ptr, "%s", hlogin.password);
+    fscanf(ptr, "%s", hlogin.name);
+    fscanf(ptr, "%d", &hlogin.age);
     printf("Enter Your Details to login :\n");
     printf("Email :\t");
     scanf("%s", hemail);
