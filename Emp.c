@@ -207,32 +207,26 @@ int hirerRegister()
     scanf("%s", &hr.password);
     FILE *hirerDetails;
     hirerDetails = fopen("/home/suraj/Coding/PBL/Details/hirer.txt", "a");
-    fprintf(hirerDetails, "%s %s %s %d\n", hr.email, hr.password, hr.name, hr.age);
+    fprintf(hirerDetails, "%s %d %s %s\n", hr.name, hr.age, hr.email, hr.password);
     fclose(hirerDetails);
+    int ch;
+    printf("Select the category you wish to hire from :\n");
+    // printf("1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\n");
+    // scanf("%d", &ch);
 }
 
 int hirerLogin()
 {
-    char hemail[30], hpassword[20], chr;
-    int logResult, count_lines = 0;
+    char hemail[30], hpassword[20];
+    int logResult;
     FILE *ptr;
     ptr = fopen("/home/suraj/Coding/PBL/Details/hirer.txt", "r");
     char hirer_name[20];
     int hirer_age;
-    chr = fgetc(ptr);
-    while (chr != EOF)
-    {
-        if (chr == '\n')
-        {
-            count_lines = count_lines + 1;
-        }
-        chr = fgetc(ptr);
-    }
-    printf("Number of lines in the file :\t%d\n", count_lines);
+    fscanf(ptr, "%s", hirer_name);
+    fscanf(ptr, "%d", &hirer_age);
     fscanf(ptr, "%s", hlogin.email);
     fscanf(ptr, "%s", hlogin.password);
-    fscanf(ptr, "%s", hlogin.name);
-    fscanf(ptr, "%d", &hlogin.age);
     printf("Enter Your Details to login :\n");
     printf("Email :\t");
     scanf("%s", hemail);
