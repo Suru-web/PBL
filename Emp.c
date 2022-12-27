@@ -256,18 +256,21 @@ int hirerLogin()
     printf("Password : ");
     scanf("%s", hpassword);
 
-    if ((strcmp(hlogin->email, hemail) == 0) && (strcmp(hlogin->password, hpassword) == 0))
+    for (int i = 0; i < lineCount; i++)
     {
-        strcpy(hirer_name, hlogin->name);
-        hirer_age = hlogin->age;
-        logResult = 1;
-        printf("\nLogin Successfull\n\n");
-        after_Hirer_login(logResult, hirer_name, hirer_age, hemail, hpassword);
-    }
-    else
-    {
-        logResult = 0;
-        printf("\nWrong Credentials, Try again \n");
+        if ((strcmp(hlogin->email, hemail) == 0) && (strcmp(hlogin->password, hpassword) == 0))
+        {
+            strcpy(hirer_name, hlogin->name);
+            hirer_age = hlogin->age;
+            logResult = 1;
+            printf("\nLogin Successfull\n\n");
+            after_Hirer_login(logResult, hirer_name, hirer_age, hemail, hpassword);
+        }
+        else
+        {
+            logResult = 0;
+            printf("\nWrong Credentials, Try again \n");
+        }
     }
 }
 
