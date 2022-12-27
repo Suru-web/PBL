@@ -13,6 +13,7 @@ int askHirer();
 int hirerRegister();
 int hirerLogin();
 void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hemail[], char hpassword[]);
+int hire_skill(char skill[]);
 
 struct hireeInfo
 {
@@ -21,6 +22,7 @@ struct hireeInfo
     char gender[1];
     int uid;
     char skill[20];
+    long long int phno;
 };
 struct hirerInfo
 {
@@ -140,6 +142,8 @@ int hireeRegister()
     scanf("%d", &hi.age);
     printf("\nEnter Your gender (M/F/O):\t");
     scanf("%s", &hi.gender);
+    printf("\nEnter your phone number :\t");
+    scanf("%lld", &hi.phno);
     id = idGenerator();
     hi.uid = id;
 
@@ -185,11 +189,11 @@ int hireeRegister()
 
     // Displaying the details
 
-    printf("\nName : %s, Age : %d, Gender : %s, ID : %d, Skill : %s\n", hi.name, hi.age, hi.gender, hi.uid, hi.skill);
+    printf("\nName : %s, Age : %d, Gender : %s, ID : %d, Skill : %s, Phone number : %lld\n", hi.name, hi.age, hi.gender, hi.uid, hi.skill, hi.phno);
 
     FILE *hireedetails;
     hireedetails = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "a");
-    fprintf(hireedetails, "%s %d %s %d %s\n", hi.name, hi.age, hi.gender, hi.uid, hi.skill);
+    fprintf(hireedetails, "%s %d %s %d %s %lld\n", hi.name, hi.age, hi.gender, hi.uid, hi.skill, hi.phno);
     fclose(hireedetails);
 }
 
@@ -278,6 +282,8 @@ int hirerLogin()
 void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hemail[], char hpassword[])
 {
     int ch;
+    int choice_skill;
+    char skill[15];
     printf("What do you want to do after loging in :\n");
     printf("1.Display Account info\t2. Update Account\t3. Hire Applicants :\t");
     scanf("%d", &ch);
@@ -291,9 +297,80 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
         break;
 
     case 3:
-        printf("Select the skill on which you want to hire :)\n");
-        printf("1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\t6.Enter your own skill set\n");
+        printf("Select the skill on which you want to contact the hirer :)\n");
+        // printf("1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\t6.Enter your own skill set\n");
+
+        printf("1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\t6.Enter your own skill set\t");
+        scanf("%d", &choice_skill);
+        printf("\n\n");
+        switch (choice_skill)
+        {
+        case 1:
+            strcpy(skill, "Driving");
+            break;
+
+        case 2:
+            strcpy(skill, "Cooking");
+
+            break;
+
+        case 3:
+            strcpy(skill, "Construction");
+
+            break;
+
+        case 4:
+            strcpy(skill, "Cleaning");
+
+            break;
+
+        case 5:
+            strcpy(skill, "Beautician");
+
+            break;
+
+        case 6:
+            scanf("%s", &skill);
+            break;
+
+        default:
+            printf("Invalid choice");
+            break;
+        }
+        hire_skill(skill);
+
     default:
         break;
+    }
+}
+int hire_skill(char skill[])
+{
+    int linec = 0;
+    struct hireeInfo x[MAX];
+    FILE *ptr;
+    ptr = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "r");
+    char c;
+    c = fgetc(ptr);
+    while (c != EOF)
+    {
+        if (c == '\n')
+        {
+            linec++;
+        }
+        c = fgetc(ptr);
+    }
+    fseek(ptr, 0, SEEK_SET);
+    for (int i = 0; i < linec; i++)
+    {
+        fscanf(ptr, "%s", x[i].name);
+        fscanf(ptr, "%d", x[i].age);
+        fscanf(ptr, "%s", x[i].gender);
+        fscanf(ptr, "%d", x[i].uid);
+        fscanf(ptr, "%s", x[i].skill);
+        fscanf(ptr, "%lld", x[i].phno);
+    }
+    for (int i = 0; i < linec; i++)
+    {
+        printf("\n%s, %d, %s, %d, %s, %lld\n", x[i].name, x[i].age, x[i].gender, x[i].uid, x[i].skill, x[i].phno);
     }
 }
