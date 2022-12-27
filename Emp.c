@@ -258,19 +258,26 @@ int hirerLogin()
 
     for (int i = 0; i < lineCount; i++)
     {
-        if ((strcmp(hlogin->email, hemail) == 0) && (strcmp(hlogin->password, hpassword) == 0))
+        if ((strcmp(hlogin[i].email, hemail) == 0) && (strcmp(hlogin[i].password, hpassword) == 0))
         {
-            strcpy(hirer_name, hlogin->name);
-            hirer_age = hlogin->age;
             logResult = 1;
-            printf("\nLogin Successfull\n\n");
-            after_Hirer_login(logResult, hirer_name, hirer_age, hemail, hpassword);
+            strcpy(hirer_name, hlogin[i].name);
+            hirer_age = hlogin[i].age;
         }
         else
         {
             logResult = 0;
-            printf("\nWrong Credentials, Try again \n");
         }
+    }
+    if (logResult == 1)
+    {
+        printf("\nLogin Successfull\n\n");
+        after_Hirer_login(logResult, hirer_name, hirer_age, hemail, hpassword);
+    }
+    else
+    {
+        logResult = 0;
+        printf("\nWrong Credentials, Try again \n");
     }
 }
 
@@ -278,7 +285,7 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
 {
     int ch;
     printf("What do you want to do after loging in :\n");
-    printf("1.Display Account info\t2. Update Account\t3. Hire Applicants");
+    printf("1.Display Account info\t2. Update Account\t3. Hire Applicants :\t");
     scanf("%d", &ch);
     switch (ch)
     {
