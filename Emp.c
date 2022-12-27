@@ -224,7 +224,20 @@ int hirerLogin()
     char hirer_name[20];
     int hirer_age;
 
-    for (int i = 0; i < 10; i++)
+    char chr;
+    int lineCount = 0;
+    chr = fgetc(ptr);
+    while (chr != EOF)
+    {
+        if (chr == '\n')
+        {
+            lineCount++;
+        }
+        chr = fgetc(ptr);
+    }
+    printf("Number of lines :\t%d\n", lineCount);
+    fseek(ptr, 0, SEEK_SET);
+    for (int i = 0; i < lineCount; i++)
     {
         fscanf(ptr, "%s", hlogin[i].name);
         fscanf(ptr, "%d", &hlogin[i].age);
@@ -232,7 +245,7 @@ int hirerLogin()
         fscanf(ptr, "%s", hlogin[i].password);
     }
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < lineCount; i++)
     {
         printf("%s %d %s %s\n", hlogin[i].name, hlogin[i].age, hlogin[i].email, hlogin[i].password);
     }
