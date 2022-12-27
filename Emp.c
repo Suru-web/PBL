@@ -36,7 +36,7 @@ struct hirerLogin
     int age;
     char email[30];
     char password[20];
-} hlogin;
+} hlogin[MAX];
 
 int main()
 {
@@ -223,19 +223,30 @@ int hirerLogin()
     ptr = fopen("/home/suraj/Coding/PBL/Details/hirer.txt", "r");
     char hirer_name[20];
     int hirer_age;
-    fscanf(ptr, "%s", hlogin.name);
-    fscanf(ptr, "%d", &hlogin.age);
-    fscanf(ptr, "%s", hlogin.email);
-    fscanf(ptr, "%s", hlogin.password);
+
+    for (int i = 0; i < 10; i++)
+    {
+        fscanf(ptr, "%s", hlogin[i].name);
+        fscanf(ptr, "%d", &hlogin[i].age);
+        fscanf(ptr, "%s", hlogin[i].email);
+        fscanf(ptr, "%s", hlogin[i].password);
+    }
+
+    for (int i = 0; i < 10; i++)
+    {
+        printf("%s %d %s %s\n", hlogin[i].name, hlogin[i].age, hlogin[i].email, hlogin[i].password);
+    }
+
     printf("Enter Your Details to login :\n");
     printf("Email :\t");
     scanf("%s", hemail);
-    printf("Password :\t");
+    printf("Password : ");
     scanf("%s", hpassword);
-    if ((strcmp(hlogin.email, hemail) == 0) && (strcmp(hlogin.password, hpassword) == 0))
+
+    if ((strcmp(hlogin->email, hemail) == 0) && (strcmp(hlogin->password, hpassword) == 0))
     {
-        strcpy(hirer_name, hlogin.name);
-        hirer_age = hlogin.age;
+        strcpy(hirer_name, hlogin->name);
+        hirer_age = hlogin->age;
         logResult = 1;
         printf("\nLogin Successfull\n\n");
         after_Hirer_login(logResult, hirer_name, hirer_age, hemail, hpassword);
