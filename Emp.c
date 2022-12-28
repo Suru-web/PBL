@@ -293,7 +293,7 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
 {
     int ch;
     int choice_skill;
-    char skill[15];
+    char skill[MAX1];
     printf("What do you want to do after loging in :\n");
     printf("1.Display Account info\t2. Update Account\t3. Hire Applicants :\t");
     scanf("%d", &ch);
@@ -342,7 +342,7 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
             break;
 
         default:
-            printf("Invalid choice");
+            printf("Invalid choice\n");
             break;
         }
         printf("%s", skill);
