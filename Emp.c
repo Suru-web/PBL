@@ -14,7 +14,7 @@ int askHirer();
 int hirerRegister();
 int hirerLogin();
 void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hemail[], char hpassword[]);
-int hire_skill(char skill[]);
+void hire_skill(char skill[]);
 
 struct hireeInfo
 {
@@ -33,7 +33,7 @@ struct hireeLogin
     int uid;
     char skill[20];
     long long int phno;
-};
+} hiree_login[MAX1];
 struct hirerInfo
 {
     int age;
@@ -308,9 +308,9 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
 
     case 3:
         printf("Select the skill on which you want to contact the hirer :)\n");
-        printf("1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\t6.Enter your own skill set\t");
+        printf("\n1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\t6.Enter your own skill set\t");
         scanf("%d", &choice_skill);
-        printf("\n\n");
+        printf("\n");
         switch (choice_skill)
         {
         case 1:
@@ -345,18 +345,12 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
             printf("Invalid choice\n");
             break;
         }
-        printf("%s", skill);
         hire_skill(skill);
-
-    default:
-        break;
     }
 }
-int hire_skill(char skill[])
+void hire_skill(char skill[])
 {
-    printf("%s", skill);
     int linec = 0;
-    struct hireeLogin x[MAX1];
     FILE *p;
     p = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "r");
     char c;
@@ -369,18 +363,20 @@ int hire_skill(char skill[])
         }
         c = fgetc(p);
     }
+    printf("\nNumber of lines :\t%d\n", linec);
     fseek(p, 0, SEEK_SET);
-    for (int i = 0; i < linec; i++)
+    for (int i = linec; i > 0; i--)
     {
-        fscanf(p, "%s", x[i].name);
-        fscanf(p, "%d", x[i].age);
-        fscanf(p, "%s", x[i].gender);
-        fscanf(p, "%d", x[i].uid);
-        fscanf(p, "%s", x[i].skill);
-        fscanf(p, "%lld", x[i].phno);
+        fscanf(p, "%s", hiree_login[i].name);
+        fscanf(p, "%d", hiree_login[i].age);
+        fscanf(p, "%s", hiree_login[i].gender);
+        fscanf(p, "%d", hiree_login[i].uid);
+        fscanf(p, "%s", hiree_login[i].skill);
+        fscanf(p, "%lld", hiree_login[i].phno);
     }
     for (int i = 0; i < linec; i++)
     {
-        printf("\n%s, %d, %s, %d, %s, %lld\n", x[i].name, x[i].age, x[i].gender, x[i].uid, x[i].skill, x[i].phno);
+        printf("\n%s, %d, %s, %d, %s, %lld\n", hiree_login[i].name, hiree_login[i].age, hiree_login[i].gender, hiree_login[i].uid, hiree_login[i].skill, hiree_login[i].phno);
     }
+    fclose(p);
 }
