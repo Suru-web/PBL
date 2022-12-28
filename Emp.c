@@ -3,6 +3,7 @@
 #include <time.h>
 #include <string.h>
 #define MAX 100
+#define MAX1 50
 int askHiree();
 int wplace();
 int hireeRegister();
@@ -16,6 +17,15 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
 int hire_skill(char skill[]);
 
 struct hireeInfo
+{
+    int age;
+    char name[20];
+    char gender[1];
+    int uid;
+    char skill[20];
+    long long int phno;
+};
+struct hireeLogin
 {
     int age;
     char name[20];
@@ -298,8 +308,6 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
 
     case 3:
         printf("Select the skill on which you want to contact the hirer :)\n");
-        // printf("1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\t6.Enter your own skill set\n");
-
         printf("1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\t6.Enter your own skill set\t");
         scanf("%d", &choice_skill);
         printf("\n\n");
@@ -337,6 +345,7 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
             printf("Invalid choice");
             break;
         }
+        printf("%s", skill);
         hire_skill(skill);
 
     default:
@@ -345,29 +354,30 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
 }
 int hire_skill(char skill[])
 {
+    printf("%s", skill);
     int linec = 0;
-    struct hireeInfo x[MAX];
-    FILE *ptr;
-    ptr = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "r");
+    struct hireeLogin x[MAX1];
+    FILE *p;
+    p = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "r");
     char c;
-    c = fgetc(ptr);
+    c = fgetc(p);
     while (c != EOF)
     {
         if (c == '\n')
         {
             linec++;
         }
-        c = fgetc(ptr);
+        c = fgetc(p);
     }
-    fseek(ptr, 0, SEEK_SET);
+    fseek(p, 0, SEEK_SET);
     for (int i = 0; i < linec; i++)
     {
-        fscanf(ptr, "%s", x[i].name);
-        fscanf(ptr, "%d", x[i].age);
-        fscanf(ptr, "%s", x[i].gender);
-        fscanf(ptr, "%d", x[i].uid);
-        fscanf(ptr, "%s", x[i].skill);
-        fscanf(ptr, "%lld", x[i].phno);
+        fscanf(p, "%s", x[i].name);
+        fscanf(p, "%d", x[i].age);
+        fscanf(p, "%s", x[i].gender);
+        fscanf(p, "%d", x[i].uid);
+        fscanf(p, "%s", x[i].skill);
+        fscanf(p, "%lld", x[i].phno);
     }
     for (int i = 0; i < linec; i++)
     {
