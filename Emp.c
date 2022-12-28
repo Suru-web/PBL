@@ -365,7 +365,7 @@ void hire_skill(char skill[])
     }
     printf("\nNumber of lines :\t%d\n", linec);
     fseek(p, 0, SEEK_SET);
-    for (int i = linec; i > 0; i--)
+    for (int i = 0; i < linec; i++)
     {
         fscanf(p, "%s", hiree_login[i].name);
         fscanf(p, "%d", hiree_login[i].age);
