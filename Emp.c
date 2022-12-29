@@ -412,7 +412,7 @@ int hireeLogin()
     FILE *p;
     p = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "r");
     char name[20], c;
-    int uid, lines = 0, result;
+    int uid, lines = 0, result, j, ch1, ch2;
     long long int phno;
     printf("Enter the details to login -\n");
     printf("Name      :\t");
@@ -442,6 +442,7 @@ int hireeLogin()
 
         if ((strcmp(name, hiree_login[i].name) == 0) && (uid == hiree_login[i].uid) && (phno == hiree_login[i].phno))
         {
+            j = i;
             result = 1;
             break;
         }
@@ -450,7 +451,23 @@ int hireeLogin()
     }
     if (result == 1)
     {
-        printf("\nLogin Successfull\n");
+        printf("\nLogin Successfull\n\n");
+        printf("Select any one choice -\t1.Display My Details\t2.Update Details :\t");
+        scanf("%d", &ch1);
+        switch (ch1)
+        {
+        case 1:
+            printf("\nName\t   :\t%s", hiree_login[j].name);
+            printf("\nAge\t   :\t%d", hiree_login[j].age);
+            printf("\nGender\t   :\t%s", hiree_login[j].gender);
+            printf("\nUnique ID  :\t%d", hiree_login[j].uid);
+            printf("\nSkill\t   :\t%s", hiree_login[j].skill);
+            printf("\nPhone no   :\t%lld\n", hiree_login[j].phno);
+            break;
+
+        default:
+            break;
+        }
     }
     else
         printf("\nInvalid Credentials, Try again\n");
