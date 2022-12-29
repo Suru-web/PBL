@@ -10,6 +10,7 @@ int hireeRegister();                                                            
 int hirerRegister();                                                                                      // Fills in all the details of the Hirer
 int idGenerator();                                                                                        // Generates Random ID for Applicant
 int hirerLogin();                                                                                         // Login Validation part for Hirer
+int hireeLogin();                                                                                         // Login validation part for Applicant
 void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hemail[], char hpassword[]); // Post login process
 void hire_skill(char skill[]);                                                                            // Filtering Applicants based on skills
 
@@ -22,6 +23,17 @@ struct hireeInfo
     char skill[20];
     long long int phno;
 };
+
+struct hireeInfoCheck
+{
+    int age;
+    char name[20];
+    char gender[1];
+    int uid;
+    char skill[20];
+    long long int phno;
+} hiree_info_check[MAX];
+
 struct hireeLogin
 {
     int age;
@@ -31,6 +43,7 @@ struct hireeLogin
     char skill[20];
     long long int phno;
 } hiree_login[MAX];
+
 struct hirerInfo
 {
     int age;
@@ -39,6 +52,7 @@ struct hirerInfo
     char email[30];
     char password[20];
 };
+
 struct hirerLogin
 {
     char name[20];
@@ -89,8 +103,7 @@ int askHiree()
         break;
 
     case 2:
-        // checkInfoHiree();
-        printf("\nWe are working on login part\n");
+        hireeLogin();
         break;
 
     default:
@@ -345,6 +358,7 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
         hire_skill(skill);
     }
 }
+
 void hire_skill(char skill[])
 {
     int linec = 0;
@@ -377,18 +391,67 @@ void hire_skill(char skill[])
     printf("Here is the list of all the applicants with %s skill :\n\n", skill);
     for (int i = 0; i < linec; i++)
     {
-        fscanf(ptrr, "%s", hiree_login[i].name);
-        fscanf(ptrr, "%d", &hiree_login[i].age);
-        fscanf(ptrr, "%s", hiree_login[i].gender);
-        fscanf(ptrr, "%d", &hiree_login[i].uid);
-        fscanf(ptrr, "%s", hiree_login[i].skill);
-        fscanf(ptrr, "%lld", &hiree_login[i].phno);
+        fscanf(ptrr, "%s", hiree_info_check[i].name);
+        fscanf(ptrr, "%d", &hiree_info_check[i].age);
+        fscanf(ptrr, "%s", hiree_info_check[i].gender);
+        fscanf(ptrr, "%d", &hiree_info_check[i].uid);
+        fscanf(ptrr, "%s", hiree_info_check[i].skill);
+        fscanf(ptrr, "%lld", &hiree_info_check[i].phno);
 
-        if (strcmp(skill, hiree_login[i].skill) == 0)
+        if (strcmp(skill, hiree_info_check[i].skill) == 0)
         {
-            printf("Name : %s, Age : %d, Gender : %s, Contact Number : %lld\n", hiree_login[i].name, hiree_login[i].age, hiree_login[i].gender, hiree_login[i].phno);
+            printf("Name : %s, Age : %d, Gender : %s, Contact Number : %lld\n", hiree_info_check[i].name, hiree_info_check[i].age, hiree_info_check[i].gender, hiree_info_check[i].phno);
         }
     }
     printf("\nYou can contact the applicant now using their number.\nThank you for using our application :)\n\n");
     fclose(ptrr);
+}
+
+int hireeLogin()
+{
+    FILE *p;
+    p = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "r");
+    char name[20], c;
+    int uid, lines = 0, result;
+    long long int phno;
+    printf("Enter the details to login -\n");
+    printf("Name      :\t");
+    scanf("%s", name);
+    printf("Unique ID :\t");
+    scanf("%d", &uid);
+    printf("Phone no. :\t");
+    scanf("%lld", &phno);
+    c = fgetc(p);
+    while (c != EOF)
+    {
+        if (c == '\n')
+        {
+            lines++;
+        }
+        c = fgetc(p);
+    }
+    rewind(p);
+    for (int i = 0; i < lines; i++)
+    {
+        fscanf(p, "%s", hiree_login[i].name);
+        fscanf(p, "%d", &hiree_login[i].age);
+        fscanf(p, "%s", hiree_login[i].gender);
+        fscanf(p, "%d", &hiree_login[i].uid);
+        fscanf(p, "%s", hiree_login[i].skill);
+        fscanf(p, "%lld", &hiree_login[i].phno);
+
+        if ((strcmp(name, hiree_login[i].name) == 0) && (uid == hiree_login[i].uid) && (phno == hiree_login[i].phno))
+        {
+            result = 1;
+            break;
+        }
+        else
+            result = 0;
+    }
+    if (result == 1)
+    {
+        printf("\nLogin Successfull\n");
+    }
+    else
+        printf("\nInvalid Credentials, Try again\n");
 }
