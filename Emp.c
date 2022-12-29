@@ -376,6 +376,7 @@ void hire_skill(char skill[])
         printf("\nFile did not open\n");
     }
     rewind(ptrr);
+    printf("Here is the list of all the applicants with %s skill :\n\n", skill);
     for (int i = 0; i < linec; i++)
     {
         fscanf(ptrr, "%s", hiree_login[i].name);
@@ -387,9 +388,9 @@ void hire_skill(char skill[])
 
         if (strcmp(skill, hiree_login[i].skill) == 0)
         {
-            printf("\nName : %s, Age : %d, Gender : %s, Contact Number : %lld\n", hiree_login[i].name, hiree_login[i].age, hiree_login[i].gender, hiree_login[i].phno);
+            printf("Name : %s, Age : %d, Gender : %s, Contact Number : %lld\n", hiree_login[i].name, hiree_login[i].age, hiree_login[i].gender, hiree_login[i].phno);
         }
     }
-
+    printf("\nYou can contact the applicant now using their number.\nThank you for using our application :)\n\n");
     fclose(ptrr);
 }
