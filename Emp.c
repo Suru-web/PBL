@@ -3,7 +3,6 @@
 #include <time.h>
 #include <string.h>
 #define MAX 100
-#define MAX1 50
 int askHiree();
 int wplace();
 int hireeRegister();
@@ -14,7 +13,7 @@ int askHirer();
 int hirerRegister();
 int hirerLogin();
 void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hemail[], char hpassword[]);
-void hire_skill();
+void hire_skill(char skill[]);
 
 struct hireeInfo
 {
@@ -33,7 +32,7 @@ struct hireeLogin
     int uid;
     char skill[20];
     long long int phno;
-} hiree_login[MAX1];
+} hiree_login[MAX];
 struct hirerInfo
 {
     int age;
@@ -293,7 +292,7 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
 {
     int ch;
     int choice_skill;
-    char skill[MAX1];
+    char skill[MAX];
     printf("What do you want to do after loging in :\n");
     printf("1.Display Account info\t2. Update Account\t3. Hire Applicants :\t");
     scanf("%d", &ch);
@@ -345,10 +344,10 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
             printf("Invalid choice\n");
             break;
         }
-        hire_skill();
+        hire_skill(skill);
     }
 }
-void hire_skill()
+void hire_skill(char skill[])
 {
     int linec = 0;
     FILE *p;
@@ -369,7 +368,6 @@ void hire_skill()
         c = fgetc(p);
     }
     fclose(p);
-    printf("\nNumber of lines :\t%d\n", linec);
 
     FILE *ptrr;
     ptrr = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "r");
@@ -386,10 +384,12 @@ void hire_skill()
         fscanf(ptrr, "%d", &hiree_login[i].uid);
         fscanf(ptrr, "%s", hiree_login[i].skill);
         fscanf(ptrr, "%lld", &hiree_login[i].phno);
+
+        if (strcmp(skill, hiree_login[i].skill) == 0)
+        {
+            printf("\nName : %s, Age : %d, Gender : %s, Contact Number : %lld\n", hiree_login[i].name, hiree_login[i].age, hiree_login[i].gender, hiree_login[i].phno);
+        }
     }
-    for (int i = 0; i < linec; i++)
-    {
-        printf("\n%s, %d, %s, %d, %s, %lld\n", hiree_login[i].name, hiree_login[i].age, hiree_login[i].gender, hiree_login[i].uid, hiree_login[i].skill, hiree_login[i].phno);
-    }
+
     fclose(ptrr);
 }
