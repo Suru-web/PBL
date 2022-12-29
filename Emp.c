@@ -14,7 +14,7 @@ int askHirer();
 int hirerRegister();
 int hirerLogin();
 void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hemail[], char hpassword[]);
-void hire_skill(char skill[]);
+void hire_skill();
 
 struct hireeInfo
 {
@@ -345,14 +345,19 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
             printf("Invalid choice\n");
             break;
         }
-        hire_skill(skill);
+        hire_skill();
     }
 }
-void hire_skill(char skill[])
+void hire_skill()
 {
     int linec = 0;
     FILE *p;
     p = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "r");
+    if (p == NULL)
+    {
+        printf("\nFile did not open\n");
+    }
+
     char c;
     c = fgetc(p);
     while (c != EOF)
@@ -363,20 +368,28 @@ void hire_skill(char skill[])
         }
         c = fgetc(p);
     }
+    fclose(p);
     printf("\nNumber of lines :\t%d\n", linec);
-    fseek(p, 0, SEEK_SET);
+
+    FILE *ptrr;
+    ptrr = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "r");
+    if (ptrr == NULL)
+    {
+        printf("\nFile did not open\n");
+    }
+    rewind(ptrr);
     for (int i = 0; i < linec; i++)
     {
-        fscanf(p, "%s", hiree_login[i].name);
-        fscanf(p, "%d", hiree_login[i].age);
-        fscanf(p, "%s", hiree_login[i].gender);
-        fscanf(p, "%d", hiree_login[i].uid);
-        fscanf(p, "%s", hiree_login[i].skill);
-        fscanf(p, "%lld", hiree_login[i].phno);
+        fscanf(ptrr, "%s", hiree_login[i].name);
+        fscanf(ptrr, "%d", hiree_login[i].age);
+        fscanf(ptrr, "%s", hiree_login[i].gender);
+        fscanf(ptrr, "%d", hiree_login[i].uid);
+        fscanf(ptrr, "%s", hiree_login[i].skill);
+        fscanf(ptrr, "%lld", hiree_login[i].phno);
     }
     for (int i = 0; i < linec; i++)
     {
         printf("\n%s, %d, %s, %d, %s, %lld\n", hiree_login[i].name, hiree_login[i].age, hiree_login[i].gender, hiree_login[i].uid, hiree_login[i].skill, hiree_login[i].phno);
     }
-    fclose(p);
+    fclose(ptrr);
 }
