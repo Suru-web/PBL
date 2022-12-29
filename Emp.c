@@ -381,11 +381,11 @@ void hire_skill()
     for (int i = 0; i < linec; i++)
     {
         fscanf(ptrr, "%s", hiree_login[i].name);
-        fscanf(ptrr, "%d", hiree_login[i].age);
+        fscanf(ptrr, "%d", &hiree_login[i].age);
         fscanf(ptrr, "%s", hiree_login[i].gender);
-        fscanf(ptrr, "%d", hiree_login[i].uid);
+        fscanf(ptrr, "%d", &hiree_login[i].uid);
         fscanf(ptrr, "%s", hiree_login[i].skill);
-        fscanf(ptrr, "%lld", hiree_login[i].phno);
+        fscanf(ptrr, "%lld", &hiree_login[i].phno);
     }
     for (int i = 0; i < linec; i++)
     {
