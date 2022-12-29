@@ -3,17 +3,15 @@
 #include <time.h>
 #include <string.h>
 #define MAX 100
-int askHiree();
-int wplace();
-int hireeRegister();
-int loginWithID();
-int idGenerator();
-int checkInfoHiree();
-int askHirer();
-int hirerRegister();
-int hirerLogin();
-void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hemail[], char hpassword[]);
-void hire_skill(char skill[]);
+int askHiree();                                                                                           // Asks if the user wants to register or login
+int askHirer();                                                                                           // Asks if the user wants to register or login
+int wplace();                                                                                             // Asks for workplace of the Applicant
+int hireeRegister();                                                                                      // Fills in all the details of the Applicant
+int hirerRegister();                                                                                      // Fills in all the details of the Hirer
+int idGenerator();                                                                                        // Generates Random ID for Applicant
+int hirerLogin();                                                                                         // Login Validation part for Hirer
+void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hemail[], char hpassword[]); // Post login process
+void hire_skill(char skill[]);                                                                            // Filtering Applicants based on skills
 
 struct hireeInfo
 {
