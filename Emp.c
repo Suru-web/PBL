@@ -469,36 +469,38 @@ int hireeLogin()
 
             case 2:
                 printf("What do you want to update?\n");
-                printf("1.Age\t2.Skill  \t3.Phone number\t");
+                printf("1.Age\t2.Skill\t");
                 scanf("%d", &ch2);
-                switch (ch2)
+                if (ch2 == 1)
                 {
-                case 1:
                     printf("Enter your new Age :\t");
                     scanf("%d", &hiree_login[j].age);
                     printf("Your new age :\t%d\n", hiree_login[j].age);
-                    break;
-
-                case 2:
+                }
+                else if (ch2 == 2)
+                {
                     printf("Enter your new skill :\t");
                     scanf("%s", hiree_login[j].skill);
                     printf("Your new skill :\t%s\n", hiree_login[j].skill);
-                    break;
-
-                case 3:
-                    printf("Enter your new Phone number :\t");
-                    scanf("%lld", &hiree_login[j].phno); // Throwing error
-                    printf("Your new phone number :\t%s\n", hiree_login[j].phno);
-
-                default:
-                    printf("Invalid choice\n");
-                    break;
                 }
-            case 3:
+                // else if (ch2 == 3)
+                // {
+                //     printf("Enter your new Phone number :\t");
+                //     scanf("%lld", &hiree_login[j].phno); // Throwing error
+                //     printf("Your new phone number :\t%s\n", hiree_login[j].phno);
+                // }
+                else
+                {
+                    printf("\nInvalid choice\n");
+                    return 0;
+                }
 
+            case 3:
+                return 0;
                 break;
 
             default:
+                printf("\nInvalid choice\n");
                 break;
             }
         }
