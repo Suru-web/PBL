@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <curses.h>
 #define MAX 100
 int askHiree();                                                                                           // Asks if the user wants to register or login
 int askHirer();                                                                                           // Asks if the user wants to register or login
@@ -13,6 +14,7 @@ int hirerLogin();                                                               
 int hireeLogin();                                                                                         // Login validation part for Applicant
 void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hemail[], char hpassword[]); // Post login process
 void hire_skill(char skill[]);                                                                            // Filtering Applicants based on skills
+int overwritting();                                                                                       // Writting the updated values
 
 struct hireeInfo
 {
@@ -67,6 +69,7 @@ int main()
     printf("Please select What you want to do in our program :\n");
     printf("1 - If you are a Hirer\t\t2 - If you are Hiree\n");
     int n;
+
     scanf("%d", &n);
     switch (n)
     {
@@ -233,10 +236,6 @@ int hirerRegister()
     hirerDetails = fopen("/home/suraj/Coding/PBL/Details/hirer.txt", "a");
     fprintf(hirerDetails, "%s %d %s %s\n", hr.name, hr.age, hr.email, hr.password);
     fclose(hirerDetails);
-    int ch;
-    printf("Select the category you wish to hire from :\n");
-    // printf("1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\n");
-    // scanf("%d", &ch);
 }
 
 int hirerLogin()
@@ -305,7 +304,7 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
     int choice_skill;
     char skill[MAX];
     printf("What do you want to do after loging in :\n");
-    printf("1.Display Account info\t2. Update Account\t3. Hire Applicants :\t");
+    printf("1.Display Account info\t2. Hire Applicants :\t");
     scanf("%d", &ch);
     switch (ch)
     {
@@ -316,7 +315,7 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
         printf("Email    :\t%s\n", hemail);
         break;
 
-    case 3:
+    case 2:
         printf("Select the skill on which you want to contact the hirer :)\n");
         printf("\n1.Driving\t2.Cooking\t3.Construction\t4.Cleaning\t5.Beautician\t6.Enter your own skill set\t");
         scanf("%d", &choice_skill);
@@ -449,60 +448,26 @@ int hireeLogin()
         else
             result = 0;
     }
+    fclose(p);
     if (result == 1)
     {
         printf("\nLogin Successfull\n\n");
-        while (1 < 2)
+        printf("Select any one choice -\t1.Display My Details\t");
+        scanf("%d", &ch1);
+        switch (ch1)
         {
-            printf("Select any one choice -\t1.Display My Details\t2.Update Details :\t3.Exit\t");
-            scanf("%d", &ch1);
-            switch (ch1)
-            {
-            case 1:
-                printf("\nName\t   :\t%s", hiree_login[j].name);
-                printf("\nAge\t   :\t%d", hiree_login[j].age);
-                printf("\nGender\t   :\t%s", hiree_login[j].gender);
-                printf("\nUnique ID  :\t%d", hiree_login[j].uid);
-                printf("\nSkill\t   :\t%s", hiree_login[j].skill);
-                printf("\nPhone no   :\t%lld\n", hiree_login[j].phno);
-                break;
+        case 1:
+            printf("\nName\t   :\t%s", hiree_login[j].name);
+            printf("\nAge\t   :\t%d", hiree_login[j].age);
+            printf("\nGender\t   :\t%s", hiree_login[j].gender);
+            printf("\nUnique ID  :\t%d", hiree_login[j].uid);
+            printf("\nSkill\t   :\t%s", hiree_login[j].skill);
+            printf("\nPhone no   :\t%lld\n", hiree_login[j].phno);
+            break;
 
-            case 2:
-                printf("What do you want to update?\n");
-                printf("1.Age\t2.Skill\t");
-                scanf("%d", &ch2);
-                if (ch2 == 1)
-                {
-                    printf("Enter your new Age :\t");
-                    scanf("%d", &hiree_login[j].age);
-                    printf("Your new age :\t%d\n", hiree_login[j].age);
-                }
-                else if (ch2 == 2)
-                {
-                    printf("Enter your new skill :\t");
-                    scanf("%s", hiree_login[j].skill);
-                    printf("Your new skill :\t%s\n", hiree_login[j].skill);
-                }
-                // else if (ch2 == 3)
-                // {
-                //     printf("Enter your new Phone number :\t");
-                //     scanf("%lld", &hiree_login[j].phno); // Throwing error
-                //     printf("Your new phone number :\t%s\n", hiree_login[j].phno);
-                // }
-                else
-                {
-                    printf("\nInvalid choice\n");
-                    return 0;
-                }
-
-            case 3:
-                return 0;
-                break;
-
-            default:
-                printf("\nInvalid choice\n");
-                break;
-            }
+        default:
+            printf("\nInvalid choice\n");
+            break;
         }
     }
     else
