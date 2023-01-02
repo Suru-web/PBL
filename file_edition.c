@@ -55,5 +55,4 @@ int main()
 
     printf("Number of lines : %d", line_no);
     printf("\nNumber of Characters : %d\n", tell);
-    rewind(ptrr);
 }

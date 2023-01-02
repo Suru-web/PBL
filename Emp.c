@@ -410,8 +410,9 @@ int hireeLogin()
 {
     FILE *p;
     p = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "r");
-    char name[20], c;
+    char name[20], c, newSkill[15];
     int uid, lines = 0, result, j, ch1, ch2;
+    int newAge;
     long long int phno;
     printf("Enter the details to login -\n");
     printf("Name      :\t");
@@ -466,18 +467,48 @@ int hireeLogin()
             break;
 
         case 2:
-            printf("What do you want to update?\n 1-Age\t\t2-Skill");
-            scanf("%d", ch2);
+            printf("What do you want to update?\n 1-Age\t\t2-Skill\t\t3.Phone number\t\t");
+            scanf("%d", &ch2);
             if (ch2 == 1)
             {
-                long long int newPhNo;
-                printf("Enter your new mobile number :\t");
-                scanf("%lld", &newPhNo);
+                printf("Enter your new age :\t");
+                scanf("%d", &newAge);
+                hiree_login[j].age = newAge;
+                printf("\nNew updated Details are :\n");
+                printf("\nName\t   :\t%s", hiree_login[j].name);
+                printf("\nAge\t   :\t%d", hiree_login[j].age);
+                printf("\nGender\t   :\t%s", hiree_login[j].gender);
+                printf("\nUnique ID  :\t%d", hiree_login[j].uid);
+                printf("\nSkill\t   :\t%s", hiree_login[j].skill);
+                printf("\nPhone no   :\t%lld\n", hiree_login[j].phno);
             }
-
-        default:
-            printf("\nInvalid choice\n");
-            break;
+            else if (ch2 == 2)
+            {
+                printf("\nEnter your new skill\n");
+                scanf("%s", newSkill);
+                strcpy(hiree_login[j].skill, newSkill);
+                printf("\nNew updated Details are :\n");
+                printf("\nName\t   :\t%s", hiree_login[j].name);
+                printf("\nAge\t   :\t%d", hiree_login[j].age);
+                printf("\nGender\t   :\t%s", hiree_login[j].gender);
+                printf("\nUnique ID  :\t%d", hiree_login[j].uid);
+                printf("\nSkill\t   :\t%s", hiree_login[j].skill);
+                printf("\nPhone no   :\t%lld\n", hiree_login[j].phno);
+            }
+            else if (ch2 == 3)
+            {
+                printf("\nEnter your new phone number :\n");
+                long long int newPhNo;
+                scanf("%lld", &newPhNo);
+                hiree_login[j].phno = newPhNo;
+                printf("\nNew updated Details are :\n");
+                printf("\nName\t   :\t%s", hiree_login[j].name);
+                printf("\nAge\t   :\t%d", hiree_login[j].age);
+                printf("\nGender\t   :\t%s", hiree_login[j].gender);
+                printf("\nUnique ID  :\t%d", hiree_login[j].uid);
+                printf("\nSkill\t   :\t%s", hiree_login[j].skill);
+                printf("\nPhone no   :\t%lld\n", hiree_login[j].phno);
+            }
         }
     }
     else
