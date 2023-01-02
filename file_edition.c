@@ -1,59 +1,59 @@
 #include <stdio.h>
 #include <string.h>
+#include <string.h>
+#define MAX 50
+struct hireeLogin
+{
+    int age;
+    char name[20];
+    char gender[1];
+    int uid;
+    char skill[20];
+    long long int phno;
+} hiree_info_check[MAX];
 int main()
 {
-    struct student
-    {
-        int age;
-        char name[20];
-    } n;
-    FILE *ptr;
-    ptr = fopen("/home/suraj/Coding/PBL/Details/demo.txt", "a");
-    printf("enter your name and age\n");
-    scanf("%s", n.name);
-    scanf("%d", &n.age);
-    fprintf(ptr, "%s %d\n", n.name, n.age);
-    fclose(ptr);
-
-    struct student1
-    {
-        int age;
-        char name[20];
-    } n1;
+    int linec = 0, tell, line_no = 0;
+    char name[15];
+    printf("\nEnter name to search\n");
+    scanf("%s", name);
     FILE *ptrr;
-    ptrr = fopen("/home/suraj/Coding/PBL/Details/demo.txt", "r");
-
-    char name1[100];
-    int age1;
-    // fread(&n1.name, sizeof(n1.name), 1, ptrr);
-    // fread(&n1.age, sizeof(n1.age), 1, ptrr);
-    //  printf("%s\n", n1.name);
-    //  printf("%d\n", n1.age);
-    for (int i = 0; i < 1; i++)
+    ptrr = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "r");
+    if (ptrr == NULL)
     {
-        fscanf(ptrr, "%s\n", n1.name);
-        fscanf(ptrr, "%d\n", &n1.age);
-        // printf("%s", n1.name);
-        // printf("%d\n", n1.age);
-        // printf("%d\n", name1);
+        printf("\nFile did not open\n");
     }
-    printf("%d\n", n1.age);
-    printf("%s\n", n1.name);
-
-    printf("Enter your name :\t");
-    scanf("%s", name1);
-    printf("\n%s\n", name1);
-    printf("Enter your age :\t");
-    scanf("%d", &age1);
-    for (int i = 0; i < 1; i++)
+    char c;
+    c = fgetc(ptrr);
+    while (c != EOF)
     {
-        if (strcmp(n1.name, name1) == 0)
+        if (c == '\n')
+        {
+            linec++;
+        }
+        c = fgetc(ptrr);
+    }
+    rewind(ptrr);
+    for (int i = 0; i < linec; i++)
+    {
+        fscanf(ptrr, "%s", hiree_info_check[i].name);
+        fscanf(ptrr, "%d", &hiree_info_check[i].age);
+        fscanf(ptrr, "%s", hiree_info_check[i].gender);
+        fscanf(ptrr, "%d", &hiree_info_check[i].uid);
+        fscanf(ptrr, "%s", hiree_info_check[i].skill);
+        fscanf(ptrr, "%lld", &hiree_info_check[i].phno);
+        printf("Name : %s, Age : %d, Gender : %s, Contact Number : %lld\n", hiree_info_check[i].name, hiree_info_check[i].age, hiree_info_check[i].gender, hiree_info_check[i].phno);
+        line_no++;
+        if (strcmp(hiree_info_check[i].name, name) == 0)
         {
             printf("\nTrue\n");
+            break;
         }
-        else
-            printf("Error\n");
     }
-
+    tell = ftell(ptrr);
     fclose(ptrr);
+
+    printf("Number of lines : %d", line_no);
+    printf("\nNumber of Characters : %d\n", tell);
+    rewind(ptrr);
 }
