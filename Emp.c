@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include <curses.h>
 #define MAX 100
 int askHiree();                                                                                           // Asks if the user wants to register or login
 int askHirer();                                                                                           // Asks if the user wants to register or login
@@ -215,7 +214,7 @@ int hireeRegister()
     printf("\nName : %s, Age : %d, Gender : %s, ID : %d, Skill : %s, Phone number : %lld\n", hi.name, hi.age, hi.gender, hi.uid, hi.skill, hi.phno);
 
     FILE *hireedetails;
-    hireedetails = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "a");
+    hireedetails = fopen("hiree.txt", "a");
     fprintf(hireedetails, "%s %d %s %d %s %lld\n", hi.name, hi.age, hi.gender, hi.uid, hi.skill, hi.phno);
     fclose(hireedetails);
 }
@@ -233,7 +232,7 @@ int hirerRegister()
     printf("Password :\t");
     scanf("%s", &hr.password);
     FILE *hirerDetails;
-    hirerDetails = fopen("/home/suraj/Coding/PBL/Details/hirer.txt", "a");
+    hirerDetails = fopen("hirer.txt", "a");
     fprintf(hirerDetails, "%s %d %s %s\n", hr.name, hr.age, hr.email, hr.password);
     fclose(hirerDetails);
 }
@@ -243,7 +242,7 @@ int hirerLogin()
     char hemail[30], hpassword[20];
     int logResult;
     FILE *ptr;
-    ptr = fopen("/home/suraj/Coding/PBL/Details/hirer.txt", "r");
+    ptr = fopen("hirer.txt", "r");
     char hirer_name[20];
     int hirer_age;
 
@@ -362,7 +361,7 @@ void hire_skill(char skill[])
 {
     int linec = 0;
     FILE *p;
-    p = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "r");
+    p = fopen("hiree.txt", "r");
     if (p == NULL)
     {
         printf("\nFile did not open\n");
@@ -381,7 +380,7 @@ void hire_skill(char skill[])
     fclose(p);
 
     FILE *ptrr;
-    ptrr = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "r");
+    ptrr = fopen("hiree.txt", "r");
     if (ptrr == NULL)
     {
         printf("\nFile did not open\n");
@@ -409,7 +408,7 @@ void hire_skill(char skill[])
 int hireeLogin()
 {
     FILE *p;
-    p = fopen("/home/suraj/Coding/PBL/Details/hiree.txt", "r");
+    p = fopen("hiree.txt", "r");
     char name[20], c, newSkill[15];
     int uid, lines = 0, result, j, ch1, ch2;
     int newAge;
