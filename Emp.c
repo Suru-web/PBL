@@ -452,7 +452,7 @@ int hireeLogin()
     if (result == 1)
     {
         printf("\nLogin Successfull\n\n");
-        printf("Select any one choice -\t1.Display My Details\t");
+        printf("Select any one choice -\t1.Display My Details\t2.Update details\t");
         scanf("%d", &ch1);
         switch (ch1)
         {
@@ -464,6 +464,16 @@ int hireeLogin()
             printf("\nSkill\t   :\t%s", hiree_login[j].skill);
             printf("\nPhone no   :\t%lld\n", hiree_login[j].phno);
             break;
+
+        case 2:
+            printf("What do you want to update?\n 1-Age\t\t2-Skill");
+            scanf("%d", ch2);
+            if (ch2 == 1)
+            {
+                long long int newPhNo;
+                printf("Enter your new mobile number :\t");
+                scanf("%lld", &newPhNo);
+            }
 
         default:
             printf("\nInvalid choice\n");
