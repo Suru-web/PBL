@@ -512,4 +512,5 @@ int hireeLogin()
     }
     else
         printf("\nInvalid Credentials, Try again\n");
+    printf("\nProgram Ending\n\n");
 }
