@@ -159,11 +159,11 @@ int hireeRegister()
 
     printf("\nEnter the details of applicant\n");
     printf("\nEnter Your name : \t");
-    scanf("%s", &hi.name);
+    scanf("%s", hi.name);
     printf("\nEnter Your age :\t");
     scanf("%d", &hi.age);
     printf("\nEnter Your gender (M/F/O):\t");
-    scanf("%s", &hi.gender);
+    scanf("%s", hi.gender);
     printf("\nEnter your phone number :\t");
     scanf("%lld", &hi.phno);
     id = idGenerator();
@@ -200,7 +200,7 @@ int hireeRegister()
         break;
 
     case 6:
-        scanf("%s", &skill);
+        scanf("%s", skill);
         break;
 
     default:
@@ -224,23 +224,25 @@ int hirerRegister()
     struct hirerInfo hr;
     printf("Enter the details :\n");
     printf("Name :\t");
-    scanf("%s", &hr.name);
+    scanf("%s", hr.name);
     printf("Age :\t");
     scanf("%d", &hr.age);
     printf("Email :\t");
-    scanf("%s", &hr.email);
+    scanf("%s", hr.email);
     printf("Password :\t");
-    scanf("%s", &hr.password);
+    scanf("%s", hr.password);
     FILE *hirerDetails;
     hirerDetails = fopen("hirer.txt", "a");
+    fprintf(hirerDetails, "Hii");
     fprintf(hirerDetails, "%s %d %s %s\n", hr.name, hr.age, hr.email, hr.password);
     fclose(hirerDetails);
+    printf("\nYou are successfully registered now, Thank you\n");
 }
 
 int hirerLogin()
 {
     char hemail[30], hpassword[20];
-    int logResult;
+    int logResult = 0;
     FILE *ptr;
     ptr = fopen("hirer.txt", "r");
     char hirer_name[20];
@@ -257,7 +259,7 @@ int hirerLogin()
         }
         chr = fgetc(ptr);
     }
-    fseek(ptr, 0, SEEK_SET);
+    rewind(ptr);
     for (int i = 0; i < lineCount; i++)
     {
         fscanf(ptr, "%s", hlogin[i].name);
@@ -279,12 +281,14 @@ int hirerLogin()
             logResult = 1;
             strcpy(hirer_name, hlogin[i].name);
             hirer_age = hlogin[i].age;
+            break;
         }
         else
         {
             logResult = 0;
         }
     }
+    printf("%d", logResult);
     if (logResult == 1)
     {
         printf("\nLogin Successfull\n\n");
@@ -346,7 +350,7 @@ void after_Hirer_login(int logResult, char hirer_name[], int hirer_age, char hem
             break;
 
         case 6:
-            scanf("%s", &skill);
+            scanf("%s", skill);
             break;
 
         default:

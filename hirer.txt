@@ -1,2 +1,2 @@
-Suraj 19 b67@bmsit.in password
-XYZ 25 xyz@gmail.com qwert
+Suraj 19 b67@bmsit.in qwert
+abc 19 itsmesuru@gmail.com password
